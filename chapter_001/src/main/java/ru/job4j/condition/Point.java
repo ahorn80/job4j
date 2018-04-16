@@ -19,7 +19,6 @@ public class Point {
         this.y = y;
     }
 
-
     /**
      * calculates vector from this point to another point
      * @param other another point
@@ -35,12 +34,10 @@ public class Point {
      * @return distance to point that
      */
     public double distanceTo(Point that) {
-        Point diffV = getDiffVector(that);
-
+        Point diffVector = getDiffVector(that);
         return Math.sqrt(
-                Math.pow(diffV.x, 2) + Math.pow(diffV.y, 2)
+                Math.pow(diffVector.x, 2) + Math.pow(diffVector.y, 2)
         );
-
     }
 
     /**
