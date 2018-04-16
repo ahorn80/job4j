@@ -11,4 +11,11 @@ public class MaxTest {
         int maxValue = myMax.max(2, 1);
         assertThat(maxValue, is(2));
     }
+
+    @Test
+    public void whenOneTwoThreeEnteredThenThree() {
+        Max myMax = new Max();
+        int maxValue = myMax.max(1, 2, 3);
+        assertThat(maxValue, is(3));
+    }
 }
