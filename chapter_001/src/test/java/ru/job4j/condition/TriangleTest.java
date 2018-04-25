@@ -31,13 +31,13 @@ public class TriangleTest {
     }
 
     @Test
-    public void whenEnterThreePointsOnSameLineThenAreaNull() {
+    public void whenEnterThreePointsOnSameLineThenInvalidArea() {
         Point a = new Point(1, 1);
         Point b = new Point(2, 2);
         Point c = new Point(3, 3);
         Triangle triangle = new Triangle(a, b, c);
         double result = triangle.area();
-        double expected = 0D;
+        double expected = -1D;
         assertThat(result, closeTo(expected, 0.1));
     }
 }
