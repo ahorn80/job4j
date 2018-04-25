@@ -18,7 +18,7 @@ public class ArrayDuplicate {
                     array[i] = array[backIndexToSwap];
                     array[backIndexToSwap] = temp;
                     backIndexToSwap--;
-                    i--; //check swapped value in next iteration
+                    i--;
                 }
             }
             firstIndexToCheck++;
