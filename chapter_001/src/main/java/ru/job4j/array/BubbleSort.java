@@ -7,12 +7,9 @@ public class BubbleSort {
      * @return sorted array
      */
     public int[] sort(int[] array) {
-        boolean swapped = false;
-        //upper array index for order check
-        int upperIndexToCheck = array.length - 1;
-        do {
-            swapped = false;
-            for (int i = 0; i < upperIndexToCheck; i++) {
+        for (int upperIndex = array.length - 1; upperIndex > 1; upperIndex--) {
+            boolean swapped = false;
+            for (int i = 0; i < upperIndex; i++) {
                 if (array[i] > array[i + 1]) {
                     int tempValue = array[i];
                     array[i] = array[i + 1];
@@ -20,10 +17,10 @@ public class BubbleSort {
                     swapped = true;
                 }
             }
-            //we do not need to check already sorted elements at the end of array
-            //in next iteration
-            upperIndexToCheck--;
-        } while (swapped);
+            if (!swapped) {
+                break;
+            }
+        }
         return array;
     }
 }
