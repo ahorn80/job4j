@@ -8,12 +8,7 @@ public class Turn {
      */
     public int[] turn(int[] array) {
         int halfArraySize = array.length / 2;
-        for (int i = 0; i < array.length; i++) {
-            //at half size we already swapped whole array for even array size
-            //for odd array size center element stays unchanged
-            if (i == halfArraySize) {
-                break;
-            }
+        for (int i = 0; i < halfArraySize; i++) {
             int tempValue = array[i];
             int backIndex = array.length - 1 - i;
             array[i] = array[backIndex];
