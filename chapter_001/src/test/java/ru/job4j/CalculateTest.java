@@ -21,8 +21,8 @@ public class CalculateTest {
 	public void whenTakeNameThenTreeEchoPlusName() {
 		String inputName = "Andreas Horn";
 		String expected = "Echo echo echo: Andreas Horn";
-		Calculate myCalc = new Calculate();
-		String result = myCalc.echo(inputName);
+		Calculate calculate = new Calculate();
+		String result = calculate.echo(inputName);
 		assertThat(result, is(expected));
 	}
 }
