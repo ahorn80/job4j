@@ -13,6 +13,12 @@ public class Item {
         this.created = created;
     }
 
+    public Item(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+        this.created = 0;
+    }
+
     public String getName() {
         return this.name;
     }
