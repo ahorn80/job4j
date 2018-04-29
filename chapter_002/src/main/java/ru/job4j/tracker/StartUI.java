@@ -109,8 +109,9 @@ public class StartUI {
         if (item != null) {
             System.out.println("Request found:");
             this.printItem(item);
+            String name = this.input.ask("Enter new request name :");
             String desc = this.input.ask("Enter new request description :");
-            Item editedItem = new Item(item.getName(), desc);
+            Item editedItem = new Item(name, desc);
             editedItem.setId(item.getId());
             this.tracker.replace(id, editedItem);
             System.out.println("Request changed:");
