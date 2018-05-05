@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -13,7 +12,7 @@ public class Tracker {
      * Массив для хранение заявок.
      */
     private final Item[] items = new Item[100];
-    private final Random numberGenerator = new Random();
+    private final Random numbers = new Random();
 
     /**
      * Указатель ячейки для новой заявки.
@@ -36,7 +35,7 @@ public class Tracker {
      * @return Уникальный ключ.
      */
     private String generateId() {
-        long number = System.currentTimeMillis() + numberGenerator.nextInt(100);
+        long number = System.currentTimeMillis() + numbers.nextInt(100);
         return String.valueOf(number);
     }
 
