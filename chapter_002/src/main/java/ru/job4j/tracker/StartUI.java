@@ -172,10 +172,11 @@ public class StartUI {
      */
     private void printItem(Item item) {
         if (item != null) {
-            String text = "ID: " + item.getId();
-            text += " name: " + item.getName();
-            text += " description: " + item.getDesc();
-            System.out.println(text);
+            StringBuilder text = new StringBuilder();
+            text.append("ID: ").append(item.getId());
+            text.append(" name: ").append(item.getName());
+            text.append(" description: ").append(item.getDesc());
+            System.out.println(text.toString());
         }
     }
 
