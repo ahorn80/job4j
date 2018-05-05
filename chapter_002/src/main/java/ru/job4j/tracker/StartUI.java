@@ -10,6 +10,8 @@ public class StartUI {
      */
     private final Tracker tracker;
 
+    private final int[] range = {0, 1, 2, 3, 4, 5, 6};
+
     /**
      * constructor with initialization of member variables
      * @param input input data
@@ -28,14 +30,11 @@ public class StartUI {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
         while (!exit) {
-            try {
-                menu.show();
-                int key = Integer.valueOf(this.input.ask("Select : "));
-                menu.select(key);
-                if (key == 6) {
-                    exit = true;
-                }
-            } catch (NumberFormatException ex) {
+            menu.show();
+            int key = this.input.ask("Select : ", range);
+            menu.select(key);
+            if (key == 6) {
+                exit = true;
             }
         }
     }
@@ -45,6 +44,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }

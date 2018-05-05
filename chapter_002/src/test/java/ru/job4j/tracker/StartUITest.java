@@ -51,15 +51,6 @@ public class StartUITest {
     }
 
     @Test
-    public void whenUpdateInvalidIDThenTrackerHasNoChange() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("name", "desc"));
-        Input input = new StubInput(new String[]{"1", "2", item.getId() + 1, "new name", "new desc", "6"});
-        new StartUI(input, tracker).init();
-        assertThat(tracker.findById(item.getId()).getName(), is("name"));
-    }
-
-    @Test
     public void whenDeleteItemThenTrackerHasNoItem() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("name", "desc"));
