@@ -37,4 +37,13 @@ public class Item {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder text = new StringBuilder();
+        text.append("ID: ").append(this.getId());
+        text.append(" name: ").append(this.getName());
+        text.append(" description: ").append(this.getDesc());
+        return text.toString();
+    }
 }
