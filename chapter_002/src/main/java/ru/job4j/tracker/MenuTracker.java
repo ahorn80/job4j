@@ -1,11 +1,28 @@
 package ru.job4j.tracker;
 
+abstract class BaseAction implements UserAction {
+    private final int key;
+    private final String name;
+    protected BaseAction(final int key, final String name) {
+        this.key = key;
+        this.name = name;
+    }
+    @Override
+    public int key() {
+        return this.key;
+    }
+    @Override
+    public String info() {
+        return String.format("%s. %s", this.key, this.name);
+    }
+}
+
 /**
  * adds item
  */
-class AddItem implements UserAction {
-    public int key() {
-        return 0;
+class AddItem extends BaseAction {
+    public AddItem(int key, String name) {
+        super(key, name);
     }
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ add new request --------------");
@@ -16,17 +33,14 @@ class AddItem implements UserAction {
         System.out.println("New request added:");
         System.out.println(item);
     }
-    public String info() {
-        return String.format("%s. %s", this.key(), "Add new Item");
-    }
 }
 
 /**
  * show all items
  */
-class ShowItems implements UserAction {
-    public int key() {
-        return 1;
+class ShowItems extends BaseAction {
+    public ShowItems(int key, String name) {
+        super(key, name);
     }
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ show all requests --------------");
@@ -35,17 +49,14 @@ class ShowItems implements UserAction {
             System.out.println(item);
         }
     }
-    public String info() {
-        return String.format("%s. %s", this.key(), "Show all items");
-    }
 }
 
 /**
  * edits item
  */
-class EditItem implements UserAction {
-    public int key() {
-        return 2;
+class EditItem extends BaseAction {
+    public EditItem(int key, String name) {
+        super(key, name);
     }
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ edit request --------------");
@@ -65,17 +76,14 @@ class EditItem implements UserAction {
             System.out.println("Request with ID:" + id + " doesn't exists");
         }
     }
-    public String info() {
-        return String.format("%s. %s", this.key(), "Edit item");
-    }
 }
 
 /**
  * deletes item
  */
-class DeleteItem implements UserAction {
-    public int key() {
-        return 3;
+class DeleteItem extends BaseAction {
+    public DeleteItem(int key, String name) {
+        super(key, name);
     }
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ delete request --------------");
@@ -88,17 +96,14 @@ class DeleteItem implements UserAction {
             System.out.println("Request with ID:" + id + " doesn't exists");
         }
     }
-    public String info() {
-        return String.format("%s. %s", this.key(), "Delete item");
-    }
 }
 
 /**
  * Find item by Id
  */
-class FindItemById implements UserAction {
-    public int key() {
-        return 4;
+class FindItemById extends BaseAction {
+    public FindItemById(int key, String name) {
+        super(key, name);
     }
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ find request by id--------------");
@@ -109,9 +114,6 @@ class FindItemById implements UserAction {
         } else {
             System.out.println("Request with ID:" + id + " doesn't exists");
         }
-    }
-    public String info() {
-        return String.format("%s. %s", this.key(), "Find item by Id");
     }
 }
 
@@ -127,13 +129,13 @@ public class MenuTracker {
     }
 
     public void fillActions() {
-        actions[0] = new AddItem();
-        actions[1] = new ShowItems();
-        actions[2] = new EditItem();
-        actions[3] = new DeleteItem();
-        actions[4] = new FindItemById();
-        actions[5] = new FindItemByName();
-        actions[6] = new MenuTracker.ExitProgram();
+        actions[0] = new AddItem(0, "Add new Item");
+        actions[1] = new ShowItems(1, "Show all items");
+        actions[2] = new EditItem(2, "Edit item");
+        actions[3] = new DeleteItem(3, "Delete item");
+        actions[4] = new FindItemById(4, "Find item by Id");
+        actions[5] = new FindItemByName(5, "Find items by name");
+        actions[6] = new MenuTracker.ExitProgram(6, "Exit Program");
     }
 
     /**
@@ -161,9 +163,9 @@ public class MenuTracker {
     /**
      * Find item by name
      */
-    class FindItemByName implements UserAction {
-        public int key() {
-            return 5;
+    class FindItemByName extends BaseAction {
+        public FindItemByName(int key, String name) {
+            super(key, name);
         }
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ find requests by name--------------");
@@ -177,17 +179,14 @@ public class MenuTracker {
                 }
             }
         }
-        public String info() {
-            return String.format("%s. %s", this.key(), "Find items by name");
-        }
     }
 
     /**
      * exit program, no operation
      */
-    private static class ExitProgram implements UserAction {
-        public int key() {
-            return 6;
+    private static class ExitProgram extends BaseAction {
+        public ExitProgram(int key, String name) {
+            super(key, name);
         }
 
         /**
@@ -196,10 +195,6 @@ public class MenuTracker {
          * @param tracker tracker
          */
         public void execute(Input input, Tracker tracker) {
-        }
-
-        public String info() {
-            return String.format("%s. %s", this.key(), "Exit Program");
         }
     }
 }
