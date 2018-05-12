@@ -56,6 +56,7 @@ public class Cell {
             return ret;
         }
         if (this == obj) {
+            ret = true;
             return ret;
         }
         if (this.getClass() != obj.getClass()) {
