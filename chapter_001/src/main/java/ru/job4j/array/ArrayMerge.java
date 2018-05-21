@@ -19,11 +19,10 @@ public class ArrayMerge {
                 result[iResult++] = second[iSecond++];
             }
         }
-        for (int i = iFirst; i < first.length; i++) {
-            result[iResult++] = first[i];
-        }
-        for (int i = iSecond; i < second.length; i++) {
-            result[iResult++] = second[i];
+        if (iFirst < first.length) {
+            System.arraycopy(first, iFirst, result, iResult, first.length - iFirst);
+        } else if (iSecond < second.length) {
+            System.arraycopy(second, iSecond, result, iResult, second.length - iSecond);
         }
         return result;
     }
