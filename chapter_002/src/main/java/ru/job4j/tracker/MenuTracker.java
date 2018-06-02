@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 abstract class BaseAction implements UserAction {
     private final int key;
     private final String name;
@@ -44,8 +47,7 @@ class ShowItems extends BaseAction {
     }
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ show all requests --------------");
-        Item[] items = tracker.findAll();
-        for (Item item:items) {
+        for (Item item : tracker.findAll()) {
             System.out.println(item);
         }
     }
@@ -121,7 +123,7 @@ class FindItemById extends BaseAction {
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[7];
+    private List<UserAction> actions = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -129,13 +131,13 @@ public class MenuTracker {
     }
 
     public void fillActions() {
-        actions[0] = new AddItem(0, "Add new Item");
-        actions[1] = new ShowItems(1, "Show all items");
-        actions[2] = new EditItem(2, "Edit item");
-        actions[3] = new DeleteItem(3, "Delete item");
-        actions[4] = new FindItemById(4, "Find item by Id");
-        actions[5] = new FindItemByName(5, "Find items by name");
-        actions[6] = new MenuTracker.ExitProgram(6, "Exit Program");
+        actions.add(new AddItem(0, "Add new Item"));
+        actions.add(new ShowItems(1, "Show all items"));
+        actions.add(new EditItem(2, "Edit item"));
+        actions.add(new DeleteItem(3, "Delete item"));
+        actions.add(new FindItemById(4, "Find item by Id"));
+        actions.add(new FindItemByName(5, "Find items by name"));
+        actions.add(new MenuTracker.ExitProgram(6, "Exit Program"));
     }
 
     /**
@@ -143,8 +145,8 @@ public class MenuTracker {
      * @param key action index
      */
     public void select(int key) {
-        if (key >= 0 && key < this.actions.length) {
-            this.actions[key].execute(this.input, this.tracker);
+        if (key >= 0 && key < this.actions.size()) {
+            this.actions.get(key).execute(this.input, this.tracker);
         }
     }
 
@@ -170,8 +172,8 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ find requests by name--------------");
             String name = input.ask("Enter request name :");
-            Item[] items = tracker.findByName(name);
-            if (items.length == 0) {
+            List<Item> items = tracker.findByName(name);
+            if (items.size() == 0) {
                 System.out.println("No request found with name: " + name);
             } else {
                 for (Item item : items) {
