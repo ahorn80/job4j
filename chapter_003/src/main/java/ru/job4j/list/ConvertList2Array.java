@@ -15,11 +15,10 @@ public class ConvertList2Array {
     public int[][] toArray(List<Integer> list, int rows) {
         int cols = (int) Math.ceil((double) list.size() / rows);
         int[][] array = new int[rows][cols];
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                int index = row * cols + col;
-                array[row][col] = index < list.size() ? list.get(index) : 0;
-            }
+        int index = 0;
+        for (Integer value : list) {
+            array[index / cols][index % cols] = value;
+            index++;
         }
         return array;
     }
