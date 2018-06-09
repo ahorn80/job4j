@@ -2,8 +2,9 @@ package ru.job4j.user;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Comparable<User> {
     private int id;
+    private int age;
     private String name;
     private String city;
 
@@ -25,6 +26,15 @@ public class User {
         return this.city;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -36,12 +46,24 @@ public class User {
         User user = (User) o;
         return id == user.id
                 && Objects.equals(name, user.name)
+                && this.age == user.age
                 && Objects.equals(city, user.city);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, name, city);
+    }
+
+    @Override
+    public int compareTo(User o) {
+        int ret = 0;
+        if (this.age < o.age) {
+            ret = -1;
+        } else if (this.age > o.age) {
+            ret = 1;
+        }
+        return ret;
     }
 }
 
