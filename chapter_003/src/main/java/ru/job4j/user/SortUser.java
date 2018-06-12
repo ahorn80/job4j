@@ -10,9 +10,7 @@ public class SortUser {
      * @return sorted set
      */
     public Set<User> sort(List<User> list) {
-        Set<User> users = new TreeSet<>();
-        users.addAll(list);
-        return users;
+        return new TreeSet<>(list);
     }
 
     /**
