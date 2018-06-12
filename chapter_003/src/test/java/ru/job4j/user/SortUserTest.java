@@ -50,7 +50,6 @@ public class SortUserTest {
         List<User> unsorted = Arrays.asList(user2, user4, user3, user1);
         List<User> sorted = Arrays.asList(user1, user2, user3, user4);
         List<User>  result = sorter.sortByAllFields(unsorted);
-        List<User>  result2 = sorter.sortNameLength(unsorted);
         assertThat(result, is(sorted));
     }
 }
